@@ -71,7 +71,8 @@ nav a:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: pink;
+    color: #4A90E2
+;
 }
 
 .social-media-icons a i {
