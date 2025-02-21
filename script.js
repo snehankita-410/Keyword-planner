@@ -49,8 +49,13 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".social-media-icons a").forEach(icon => {
         icon.addEventListener("click", function (event) {
             event.preventDefault();
-            let platform = this.getAttribute("onclick").replace("showAnalysis('", "").replace("')", "");
-            showAnalysis(platform);
+            
+            // Remove 'active' class from all icons
+            document.querySelectorAll(".social-media-icons a").forEach(i => i.classList.remove("active"));
+    
+            // Add 'active' class to clicked icon
+            this.classList.add("active");
         });
     });
+    
 });
