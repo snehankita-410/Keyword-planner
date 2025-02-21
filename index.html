@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Keyword Planner</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -13,10 +14,9 @@
         <div>
             <h1>Keyword Planner</h1>
         </div>
-        <!-- Navbar with Hamburger Menu (Three Bars) -->
         <nav>
             <a href="#">Home</a>
-            <a href="#">About Us</a>
+            <a href="#about">About Us</a>
             <div class="hamburger-menu" onclick="toggleSocialMediaMenu()">
                 <div></div>
                 <div></div>
@@ -24,23 +24,14 @@
             </div>
         </nav>
     </header>
-
-    <!-- Social Media Icons (Visible below header on large screens) -->
+    
+    <!-- Social Media Icons -->
     <div class="social-media-icons">
-        <a href="#" onclick="showAnalysis('youtube')">&#xf167; YouTube</a>
-        <a href="#" onclick="showAnalysis('instagram')">&#xf16d; Instagram</a>
-        <a href="#" onclick="showAnalysis('linkedin')">&#xf08c; LinkedIn</a>
-        <a href="#" onclick="showAnalysis('twitter')">&#xf099; Twitter</a>
-        <a href="#" onclick="showAnalysis('facebook')">&#xf09a; Facebook</a>
-    </div>
-
-    <!-- Social Media Dropdown (Visible only on small screens) -->
-    <div id="socialMediaMenu" class="social-media-dropdown">
-        <a href="#" onclick="showAnalysis('youtube')">&#xf167; YouTube</a>
-        <a href="#" onclick="showAnalysis('instagram')">&#xf16d; Instagram</a>
-        <a href="#" onclick="showAnalysis('linkedin')">&#xf08c; LinkedIn</a>
-        <a href="#" onclick="showAnalysis('twitter')">&#xf099; Twitter</a>
-        <a href="#" onclick="showAnalysis('facebook')">&#xf09a; Facebook</a>
+        <a href="#" onclick="showAnalysis('youtube')">YouTube</a>
+        <a href="#" onclick="showAnalysis('instagram')">Instagram</a>
+        <a href="#" onclick="showAnalysis('linkedin')">LinkedIn</a>
+        <a href="#" onclick="showAnalysis('twitter')">Twitter</a>
+        <a href="#" onclick="showAnalysis('facebook')">Facebook</a>
     </div>
 
     <!-- Main Content -->
@@ -48,10 +39,7 @@
         <div class="form-container">
             <h2>Keyword Planner</h2>
             <form action="#" method="POST">
-                <!-- Keyword Input -->
                 <input type="text" id="keyword" name="keyword" placeholder="Enter keyword" required>
-
-                <!-- Language Dropdown -->
                 <select id="language" name="language" required>
                     <option value="" disabled selected>Select language</option>
                     <option value="en">English</option>
@@ -66,42 +54,43 @@
                     <option value="ko">Korean</option>
                 </select>
 
-                <!-- Search Button -->
                 <button type="submit">Search</button>
             </form>
         </div>
-
-        <!-- Keyword Analysis Display -->
-        <div id="analysisContainer" class="analysis-container">
-            <h3>Keyword Analysis for <span id="platformName">Select a platform</span></h3>
-            <p>Displaying keyword data for the selected social media platform. (Placeholder content)</p>
-        </div>
-
-        <!-- About Us Section -->
-        <div class="about-us">
-            <h2>About Us</h2>
-            <p>We are a dedicated team working toward providing the best keyword planning and research tools for marketers and businesses. Our goal is to help you find the best keywords to boost your online presence and reach your target audience efficiently.</p>
-        </div>
     </div>
 
-    <script>
-        // Function to toggle the social media menu visibility on click of hamburger menu
-        function toggleSocialMediaMenu() {
-            var menu = document.getElementById("socialMediaMenu");
-            menu.style.display = menu.style.display === "block" ? "none" : "block";
-        }
+    <!-- Analysis Section -->
+    <div id="analysisContainer" class="analysis-container">
+        <h3>Keyword Analysis for <span id="platformName">Select a platform</span></h3>
+        <p>Displaying keyword data for the selected social media platform.</p>
+    </div>
 
-        // Function to show analysis for a selected platform
-        function showAnalysis(platform) {
-            var analysisContainer = document.getElementById("analysisContainer");
-            var platformName = document.getElementById("platformName");
+    <!-- Keyword Search Results -->
+<div id="resultsContainer" class="results-container">
+    <h3>Search Results</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Keyword</th>
+                <th>Search Volume</th>
+                <th>Competition</th>
+            </tr>
+        </thead>
+        <tbody id="resultsTableBody">
+            <!-- Dynamic Data Goes Here -->
+        </tbody>
+    </table>
+</div>
 
-            // Update platform name and display analysis section
-            platformName.textContent = platform.charAt(0).toUpperCase() + platform.slice(1);
-            analysisContainer.style.display = "block";
-        }
-    </script>
+    <!-- About Us Section -->
+    <section id="about" class="about-us">
+        <h2>About Us</h2>
+        <p>We are a dedicated team working towards providing the best keyword planning and research tools for marketers and businesses.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 Keyword Planner. All rights reserved.</p>
+    </footer>
 </body>
 </html>
-
-
