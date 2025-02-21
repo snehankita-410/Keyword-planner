@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Toggle the social media menu visibility
     document.querySelector(".hamburger-menu").addEventListener("click", function () {
         let menu = document.getElementById("socialMediaMenu");
         menu.style.display = menu.style.display === "block" ? "none" : "block";
     });
 
+    // Show analysis for selected platform
     window.showAnalysis = function (platform) {
         let analysisContainer = document.getElementById("analysisContainer");
         let platformName = document.getElementById("platformName");
@@ -12,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         analysisContainer.style.display = "block";
     };
 
+    // Handle form submission
     document.querySelector("form").addEventListener("submit", function (event) {
         event.preventDefault();
         let keyword = document.getElementById("keyword").value;
@@ -41,4 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         resultsContainer.style.display = "block";
     }
+
+    // Add event listeners for social media icons
+    document.querySelectorAll(".social-media-icons a").forEach(icon => {
+        icon.addEventListener("click", function (event) {
+            event.preventDefault();
+            let platform = this.getAttribute("onclick").replace("showAnalysis('", "").replace("')", "");
+            showAnalysis(platform);
+        });
+    });
 });
