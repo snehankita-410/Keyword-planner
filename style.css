@@ -1,163 +1,276 @@
-/* General Styles */
+/* Reset Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
-/* Root Variables */
-:root {
-    --primary-color: #1e90ff;
-    --secondary-color: #ff6347;
-    --bg-color: #f8f9fa;
-    --text-color: #333;
-}
-
-/* Body */
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: #f4f4f4;
 }
 
-/* Header */
+/* Header Styles */
 header {
-    background: var(--primary-color);
-    color: white;
-    padding: 20px;
-    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
-    font-size: 2.2rem;
-    font-weight: bold;
+    font-size: 2.5em;
 }
 
-/* Navigation */
+/* Navbar Styles */
 nav {
     display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 15px 0;
+    align-items: center;
 }
 
 nav a {
-    color: white;
+    color: #fff;
+    padding: 10px;
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    transition: color 0.3s ease-in-out;
+    margin-right: 20px;
 }
 
 nav a:hover {
-    color: var(--secondary-color);
+    background-color: #555;
+    border-radius: 4px;
 }
 
-/* Social Icons */
-.social-icons {
-    text-align: center;
-    padding: 10px;
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
 }
 
-.social-icons a {
-    font-size: 20px;
-    margin: 0 8px;
-    color: var(--primary-color);
-    transition: color 0.3s ease-in-out;
+.hamburger-menu div {
+    background-color: #fff;
+    width: 25px;
+    height: 3px;
 }
 
-.social-icons a:hover {
-    color: var(--secondary-color);
-}
-
-/* Search Bar */
-.search-container {
+/* Social Media Icons */
+.social-media-icons {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    gap: 20px;
+    margin-top: 15px;
 }
 
-.search-container input,
-.search-container select,
-.search-container button {
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    margin-right: 10px;
+.social-media-icons a {
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #4A90E2;
 }
 
-.search-container button {
-    background: var(--secondary-color);
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-}
-
-.search-container button:hover {
-    background: #e5533c;
-}
-
-/* Content Sections */
-.section {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.section h2 {
+.social-media-icons a i {
     font-size: 2rem;
-    margin-bottom: 15px;
-    font-weight: 600;
+    transition: color 0.3s ease;
 }
 
-/* Keyword Analysis */
-.keyword-analysis {
-    background: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 20px auto;
+/* Icon Colors */
+.social-media-icons a[href*="youtube"] i { color: #FF0000; }
+.social-media-icons a[href*="instagram"] i { color: #C13584; }
+.social-media-icons a[href*="linkedin"] i { color: #0077b5; }
+.social-media-icons a[href*="twitter"] i { color: #1DA1F2; }
+.social-media-icons a[href*="facebook"] i { color: #1877F2; }
+.social-media-icons a[href*="google"] i { color: #4285F4; }
+.social-media-icons a[href*="amazon"] i { color: black; }
+.social-media-icons a[href*="pinterest"] i { color: #BD081C; }
+.social-media-icons a[href*="playstore"] i { color: #34A853; }
+
+/* Hover Effect on Social Media Icons */
+.social-media-icons a:hover {
+    transform: scale(1.2);
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Table Formatting */
-.table-container {
-    width: 100%;
-    max-width: 900px;
-    margin: auto;
-    background: white;
+
+.social-media-icons a.active {
+    transform: scale(1.2);
+    opacity: 0.7;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Google and Play Store Icons with Gradient */
+.google-icon, .playstore-icon {
+    font-size: 50px;
+    background: linear-gradient(45deg, #4285F4, #EA4335, #FBBC05, #34A853);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Main Content */
+.main-content {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-table {
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-container input,
+.form-container select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.form-container button:hover {
+    background-color: #555;
+}
+
+
+
+/* Centering all tables */
+.results-container, .keyword-planner-container, .analysis-container, .keyword-search-container, .main-content-table {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.results-container table, .keyword-planner-container table, .analysis-container table, .keyword-search-container table, .main-content-table table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-table th, table td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: left;
+.results-container th, .results-container td, .keyword-planner-container th, .keyword-planner-container td, .analysis-container th, .analysis-container td, .keyword-search-container th, .keyword-search-container td, .main-content-table th, .main-content-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
-table th {
-    background: var(--primary-color);
+.results-container th, .keyword-planner-container th, .analysis-container th, .keyword-search-container th, .main-content-table th {
+    background-color: #333;
     color: white;
 }
 
-table tr:hover {
-    background: #f1f1f1;
+/* About Us Section */
+.about-us {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.about-us h2 {
+    margin-bottom: 15px;
+}
+
+.about-us p {
+    font-size: 1.1em;
 }
 
 /* Footer */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
+.footer {
+    background-color: #333;
     color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+.footer .social-icons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.footer .social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.footer .social-icons a:hover {
+    color: #ffcc00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .hamburger-menu {
+        display: flex;
+    }
+    .form-container input, .form-container select {
+        font-size: 1em;
+    }
+    .form-container button {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    nav {
+        display: block;
+    }
+    nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+    header h1 {
+        font-size: 1.8em;
+    }
+    .social-media-icons {
+        flex-direction: column;
+    }
 }
