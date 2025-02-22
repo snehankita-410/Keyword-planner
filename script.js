@@ -1,3 +1,8 @@
+function redirectToIndex() {
+    window.location.href = "index.html"; /* replace with your index page URL */
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // Toggle the social media menu visibility
     document.querySelector(".hamburger-menu").addEventListener("click", function () {
