@@ -2,6 +2,16 @@ function redirectToIndex() {
     window.location.href = "index.html"; /* replace with your index page URL */
 }
 
+// Select the hamburger icon and navigation
+const menuIcon = document.querySelector('.menu-icon');
+const nav = document.querySelector('nav');
+
+// Add a click event listener to the hamburger icon
+menuIcon.addEventListener('click', () => {
+  // Toggle the 'active' class to show/hide the navigation menu
+  nav.classList.toggle('active');
+});
+
 
 document.addEventListener("DOMContentLoaded", function () {
     // Toggle the social media menu visibility
