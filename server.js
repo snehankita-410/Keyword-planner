@@ -1,24 +1,20 @@
-// 📌 Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
-const { exec } = require("child_process");
+const express = require("express");
+const cors = require("cors");
+const axios = require("axios");
+const { spawn, exec } = require("child_process");
 
+const app = express(); // ✅ Initialize Express first
+app.use(cors());
+app.use(express.json());
+
+// 🔹 Install pytrends if missing
 exec("pip install pytrends", (error, stdout, stderr) => {
     if (error) {
         console.error(`Error installing pytrends: ${error.message}`);
         return;
     }
-    console.log(`pytrends installed: ${stdout}`);
+    console.log(`✅ pytrends installed: ${stdout}`);
 });
-
-const express = require("express");
-const cors = require("cors");
-const axios = require("axios");
-const { spawn } = require("child_process");
-
-const app = express();
-app.use(cors());
-app.use(express.json());
 
 // 🔹 Scaling Factors
 const GOOGLE_TRENDS_MULTIPLIER = 27400;
@@ -30,15 +26,10 @@ const PLAYSTORE_MULTIPLIER = 800;
 const LINKEDIN_MULTIPLIER = 300;
 const TWITTER_MULTIPLIER = 400;
 
-// 📌 Delay function to wait before retrying
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 // 📌 Google Trends Search Volume (via Python script)
 async function getGoogleSearchVolume(keyword) {
     return new Promise((resolve, reject) => {
-        const process = spawn("python3", ["google_trends.py", keyword]); // ✅ Use "python3" for Render
+        const process = spawn("python3", ["google_trends.py", keyword]); // ✅ Use python3 for Render
 
         let dataBuffer = "";
         process.stdout.on("data", (data) => {
@@ -57,11 +48,12 @@ async function getGoogleSearchVolume(keyword) {
     });
 }
 
-
-// 📌 YouTube Search Volume
+// 📌 Other Search Volumes
 async function getYouTubeVolume(keyword) {
     try {
-        const response = await axios.get(`https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${keyword}`);
+        const response = await axios.get(
+            `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${keyword}`
+        );
         return response.data[1] ? response.data[1].length * YOUTUBE_MULTIPLIER : 0;
     } catch (error) {
         console.error("🚨 YouTube API Error:", error.message);
@@ -69,7 +61,6 @@ async function getYouTubeVolume(keyword) {
     }
 }
 
-// 📌 Estimated Search Volumes for Other Platforms
 async function getInstagramVolume(keyword) { return keyword.length * INSTAGRAM_MULTIPLIER; }
 async function getFacebookVolume(keyword) { return keyword.length * FACEBOOK_MULTIPLIER; }
 async function getPinterestVolume(keyword) { return keyword.length * PINTEREST_MULTIPLIER; }
@@ -79,7 +70,7 @@ async function getTwitterVolume(keyword) { return keyword.length * TWITTER_MULTI
 
 // 📌 Timeout Wrapper to Prevent Hanging Requests
 function withTimeout(promise, ms) {
-    const timeout = new Promise((_, reject) => 
+    const timeout = new Promise((_, reject) =>
         setTimeout(() => reject(new Error("Request Timeout")), ms)
     );
     return Promise.race([promise, timeout]);
@@ -130,3 +121,6 @@ app.post("/search-volume", async (req, res) => {
     }
 });
 
+// 📌 Start Server (✅ Moved to the bottom)
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
