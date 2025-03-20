@@ -1,3 +1,16 @@
+// 📌 Start Server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+const { exec } = require("child_process");
+
+exec("pip install pytrends", (error, stdout, stderr) => {
+    if (error) {
+        console.error(`Error installing pytrends: ${error.message}`);
+        return;
+    }
+    console.log(`pytrends installed: ${stdout}`);
+});
+
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
@@ -117,15 +130,3 @@ app.post("/search-volume", async (req, res) => {
     }
 });
 
-// 📌 Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
-const { exec } = require("child_process");
-
-exec("pip install pytrends", (error, stdout, stderr) => {
-    if (error) {
-        console.error(`Error installing pytrends: ${error.message}`);
-        return;
-    }
-    console.log(`pytrends installed: ${stdout}`);
-});
