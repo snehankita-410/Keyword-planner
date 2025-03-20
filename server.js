@@ -124,3 +124,30 @@ app.post("/search-volume", async (req, res) => {
 // 📌 Start Server (✅ Moved to the bottom)
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+const TIMEOUT_DURATION = 15000; // 🔹 Increase timeout to 15 seconds
+
+app.post("/search-volume", async (req, res) => {
+    const { keyword } = req.body;
+    if (!keyword) return res.status(400).json({ error: "Keyword is required" });
+
+    try {
+        const [
+            googleVolume,
+            youtubeVolume
+        ] = await Promise.all([
+            withTimeout(getGoogleSearchVolume(keyword), TIMEOUT_DURATION),
+            withTimeout(getYouTubeVolume(keyword), TIMEOUT_DURATION)
+        ]);
+
+        res.json({
+            keyword,
+            search_volume: [
+                { platform: "Google", searches: googleVolume },
+                { platform: "YouTube", searches: youtubeVolume }
+            ]
+        });
+    } catch (error) {
+        console.error("🚨 Error fetching search volume:", error);
+        res.status(500).json({ error: "Failed to fetch search volume (Timeout)" });
+    }
+});
