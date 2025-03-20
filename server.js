@@ -25,7 +25,7 @@ function delay(ms) {
 // 📌 Google Trends Search Volume (via Python script)
 async function getGoogleSearchVolume(keyword) {
     return new Promise((resolve, reject) => {
-        const process = spawn("python", ["google_trends.py", keyword]);
+        const process = spawn("python3", ["google_trends.py", keyword]); // ✅ Use "python3" for Render
 
         let dataBuffer = "";
         process.stdout.on("data", (data) => {
@@ -43,6 +43,7 @@ async function getGoogleSearchVolume(keyword) {
         });
     });
 }
+
 
 // 📌 YouTube Search Volume
 async function getYouTubeVolume(keyword) {
